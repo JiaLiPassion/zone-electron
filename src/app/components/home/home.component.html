@@ -2,4 +2,28 @@
   <h1 class="title">
     {{ 'PAGES.HOME.TITLE' | translate }}
   </h1>
+  <button (click)="shortcut()">ShortCut</button>
+  shortcutEnabled: {{shortcutEnabled}}<br>
+  Zone: {{shortcutZone}}<br>
+  <button (click)="preventQuit()">PreventQuit</button>
+  quitEnabled: {{quitEnabled}}<br>
+  Zone: {{quitZone}}<br>
+  <button (click)="getFileIcon()">getFileIcon</button>
+  getFileIcon: {{iconEnabled}}<br>
+  Zone: {{iconZone}}<br>
+  <button (click)="capture()">desktop capture</button>
+  capture: {{captureEnabled}}<br>
+  Zone: {{captureZone}}<br>
+  <button (click)="dialog()">dialog</button>
+  dialog: {{dialogEnabled}}<br>
+  Zone: {{dialogZone}}<br>
+  <button (click)="menu()">menu</button>
+  menu: {{menuEnabled}}<br>
+  Zone: {{menuZone}}<br>
+  <button (click)="shell()">menu</button>
+  shell: {{shellEnabled}}<br>
+  Zone: {{shellZone}}<br>
+  <button (click)="zoom()">zoom</button>
+  zoom: {{zoomEnabled}}<br>
+  Zone: {{zoomZone}}<br>
 </div>
