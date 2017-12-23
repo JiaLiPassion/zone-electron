@@ -17,19 +17,15 @@ export class HomeComponent implements OnInit {
   quitEnabled = false;
   quitZone: any;
 
-  iconEnabled = false;
   iconZone: any;
 
-  captureEnabled = false;
   captureZone: any;
 
-  dialogEnabled = false;
   dialogZone: any;
 
   menuEnabled = false;
   menuZone: any;
 
-  shellEnabled = false;
   shellZone: any;
 
   constructor() { }
@@ -72,45 +68,38 @@ export class HomeComponent implements OnInit {
     if (!this.electron.remote.app) {
       return;
     }
-    this.iconEnabled = !this.iconEnabled;
-    if (this.iconEnabled) {
-      this.electron.remote.app.getFileIcon('', () => {
-        this.iconZone = Zone.current.name;
-      });
-    }
+    this.electron.remote.app.getFileIcon('', () => {
+      this.iconZone = Zone.current.name;
+    });
   }
 
   capture() {
     if (!this.electron.desktopCapturer) {
       return;
     }
-    this.captureEnabled = !this.captureEnabled;
-    if (this.captureEnabled) {
-      this.electron.desktopCapturer.getSources({types: ['window', 'screen']}, (error, sources) => {
-        this.captureZone = Zone.current.name;
-      });
-    }
+    this.electron.desktopCapturer.getSources({types: ['window', 'screen']}, (error, sources) => {
+      this.captureZone = Zone.current.name;
+    });
   }
 
   dialog() {
     if (!this.electron.remote.dialog) {
       return;
     }
-    this.dialogEnabled = !this.dialogEnabled;
-    if (this.dialogEnabled) {
-      this.electron.remote.dialog.showMessageBox({
-        type: 'info'
-      }, () => {
-        this.dialogZone = Zone.current.name;
-      });
-    }
+    this.electron.remote.dialog.showMessageBox({type: 'info'}, () => {
+      this.dialogZone = Zone.current.name;
+    });
   }
 
   menu() {
     if (!this.electron.remote.Menu) {
       return;
     }
-    this.menuEnabled = !this.menuEnabled;
+    if (!this.menuEnabled) {
+      this.menuEnabled = !this.menuEnabled;
+    } else {
+      return;
+    }
     const template = [{
       label: 'Edit',
       submenu: [
@@ -130,7 +119,6 @@ export class HomeComponent implements OnInit {
     if (!this.electron.shell) {
       return;
     }
-    this.shellEnabled = !this.shellEnabled;
     this.electron.shell.openExternal('https://www.github.com', {activate: true}, () => {
       this.shellZone = Zone.current.name;
     });
