@@ -32,9 +32,6 @@ export class HomeComponent implements OnInit {
   shellEnabled = false;
   shellZone: any;
 
-  zoomEnabled = false;
-  zoomZone: any;
-
   constructor() { }
 
   ngOnInit() {
@@ -136,16 +133,6 @@ export class HomeComponent implements OnInit {
     this.shellEnabled = !this.shellEnabled;
     this.electron.shell.openExternal('https://www.github.com', {activate: true}, () => {
       this.shellZone = Zone.current.name;
-    });
-  }
-
-  zoom() {
-    if (!this.electron.remote.webContents) {
-      return;
-    }
-    this.zoomEnabled = !this.zoomEnabled;
-    this.electron.remote.webContents.getZoomFactor(() => {
-      this.zoomZone = Zone.current.name;
     });
   }
 }
